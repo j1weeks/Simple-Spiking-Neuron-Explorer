@@ -8,3 +8,6 @@ Installation
 2. Navigate to the newly created directory in the console.
 3. Run "pip install -r requirements.txt".
 4. Run "python main.py".
+
+Known Issues
+The animation can crash when reaching the end of the user-defined T if that T is greater than or less than 500ms. 
