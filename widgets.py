@@ -20,6 +20,8 @@ SLIDER_RANGES = {
     "c": (-100, 0), # in mV
     "d": (0.0, 10.0),
     "I": (0.0, 20.0),
+    "T_pre": (0.0, 300.0), # in ms
+    "T": (0.0, 1000.0) # in ms
 }
 
 PARAM_LABELS = {
@@ -28,13 +30,24 @@ PARAM_LABELS = {
     "c": "Reset value c (mV)",
     "d": "Reset Increment d",
     "I": "Input Current I",
+    "T_pre": "Pre-excitation time (ms)",
+    "T": "Excitation time T"
 }
+
+# Define default time scale and add them to all presets automaticall 
+DEFAULT_T_PRE = 50 # ms
+DEFAULT_T = 500 # ms
+
+for preset in PRESETS.values():
+    preset.setdefault("T_pre", DEFAULT_T_PRE)
+    preset.setdefault("T", DEFAULT_T)
 
 class ParameterWidgets:
     """
     Creates sliders and preset buttons for neuron parameters.
     """
     def __init__(self, callback, param_labels=None):
+        self.callback = callback  # function to call when params change
         self.callback = callback  # function to call when params change
         self.sliders = {}
         self.param_labels = param_labels if param_labels else {key: key for key in SLIDER_RANGES}
@@ -43,7 +56,7 @@ class ParameterWidgets:
     def create_widgets(self):
         with dpg.group(horizontal=False):
             # Sliders with labels on top
-            for key in ["a", "b", "c", "d", "I"]:
+            for key in ["a", "b", "c", "d", "I", "T_pre", "T"]:
                 label = self.param_labels.get(key, key)
                 with dpg.group(horizontal=False):
                     dpg.add_text(label)

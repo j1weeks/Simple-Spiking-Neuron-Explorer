@@ -73,9 +73,11 @@ class NeuronExplorer:
 
         dpg.destroy_context()
 
+        self.params = self.param_widget.get_params()
+
     def update_params(self):
         (
-            self.params_t,
+            self.t,
             self.v,
             self.u,
             self.v_vals,
