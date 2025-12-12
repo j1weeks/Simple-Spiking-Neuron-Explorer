@@ -10,4 +10,5 @@ Installation
 4. Run "python main.py".
 
 Known Issues
+
 The animation can crash when reaching the end of the user-defined T if that T is greater than or less than 500ms. 
