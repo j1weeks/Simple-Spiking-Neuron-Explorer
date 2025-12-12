@@ -11,4 +11,4 @@ Installation
 
 Known Issues
 
-The animation can crash when reaching the end of the user-defined T if that T is greater than or less than 500ms. 
+The animation can cause a crash when reaching the end of the user-defined T if that T is greater than or less than 500ms. 
